@@ -1,45 +1,7 @@
-let allTasks_array = [
-    // {
-    //     task:"delete this",
-    //     date:"8-30-2026"
-    // },
-    // {
-    //     task:"hello this is the second work",
-    //     date:"8-30-2026"
-    // },
-    // {
-    //     task:"hello this is the second work",
-    //     date:"8-30-2026"
-    // },
-    // {
-    //     task:"delete this",
-    //     date:"8-30-2026"
-    // },
-    // {
-    //     task:"hello this is the second work",
-    //     date:"8-30-2026"
-    // },
-    // {
-    //     task:"deone this",
-    //     date:"8-30-2026"
-    // },
-    // {
-    //     task:"hello this is the second work",
-    //     date:"8-30-2026"
-    // },
-    // {
-    //     task:"hello this is the second work",
-    //     date:"8-30-2026"
-    // },
-    // {
-    //     task:"done this",
-    //     date:"8-30-2026"
-    // },
-] || []
+let allTasks_array = JSON.parse(localStorage.getItem('allTasks_array')) || []
 
-
-let deletedIndexes = []
-let doneIndexes =  []
+let deletedIndexes = JSON.parse(localStorage.getItem('deletedIndexes')) || []
+let doneIndexes = JSON.parse(localStorage.getItem('doneIndexes')) || []
 
 function handleKeyDown(event){
     if(event.key==='Enter') handleAdd(event)
@@ -64,6 +26,7 @@ function handleAdd(event){
     task_date.value=null
 
     allTasks_array.push({task,date,id})
+    localStorage.setItem('allTasks_array',JSON.stringify(allTasks_array))
     renderTasks()
 }
 
@@ -130,6 +93,7 @@ function renderTasks(){
 
 function handleDelete(i){
     deletedIndexes.push(i)
+    localStorage.setItem('deletedIndexes',JSON.stringify(deletedIndexes))
     const id = "#id"+i;
     const iddl = "#delete-btn"+i;
     const iddn = "#done-btn"+i;
@@ -152,6 +116,7 @@ function handleDelete(i){
 
 function handleDone(i){
     doneIndexes.push(i)
+    localStorage.setItem('doneIndexes',JSON.stringify(doneIndexes))
     const id = "#id"+i;
     const iddl = "#delete-btn"+i;
     const iddn = "#done-btn"+i;
@@ -179,7 +144,9 @@ function handleClearDeleted(){
     })
 
     allTasks_array = newtasks
+    localStorage.setItem('allTasks_array',JSON.stringify(allTasks_array))
     deletedIndexes=[]
+    localStorage.setItem('deletedIndexes',JSON.stringify(deletedIndexes))
     renderTasks()
 }
 
@@ -190,6 +157,8 @@ function handleClearDone(){
     })
 
     allTasks_array = newtasks
+    localStorage.setItem('allTasks_array',JSON.stringify(allTasks_array))
     doneIndexes=[] 
+    localStorage.setItem('doneIndexes',JSON.stringify(doneIndexes))
     renderTasks()
 }
