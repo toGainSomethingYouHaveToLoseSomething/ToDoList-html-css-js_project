@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="ToDoList.css">
+</head>
+
+<body>
+    <div class="body-container">
+        <header>
+            <h1 id="heading">To Do List</h1>
+            <div class="project-details-container">
+                <p id="made-with">Made With</p>
+                <section id="languages-used">
+                    <section class="language">HTML</section>
+                    <section class="language">CSS</section>
+                    <section class="language">JavaScript</section>
+                </section>
+            </div>
+        </header>
+
+        <form>
+            <input 
+            id="input-box-text" 
+            type="text" 
+            required
+            placeholder="Add work to do"
+            onkeydown="handleKeyDown(event)"
+            >
+            <input id="input-date" type="date">
+            <button 
+            id="add-button"
+            onclick="handleAdd(event)"
+            required
+            >
+                Add
+            </button>
+        </form>
+
+        <main>
+            <div class="render-tasks">
+                <!-- task will show here -->
+            </div>
+        </main>
+
+
+        <footer>
+            <button onclick="handleClearDeleted()" class="clear-button" id="clear-deleted-button">Clear Deleted</button>
+            <button onclick="handleClearDone()" class="clear-button" id="clear-done-button">Clear Done</button>
+        </footer>
+    </div>
+
+
+    <script src="ToDoList.js"></script>
+</body>
+
+</html>
